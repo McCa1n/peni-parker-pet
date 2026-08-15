@@ -1,70 +1,51 @@
-# Peni Parker Pet
+# Peni Parker 桌宠
 
-A custom animated pet package for ChatGPT/Codex Pets. The character is rendered in an original comic-print style: short black hair, a lively anime expression, a school-uniform-inspired outfit, a teal cat backpack, CMYK halftones, and hand-inked comic lines.
+这是一个供 ChatGPT/Codex Pets 使用的自定义 Peni Parker 桌宠包。当前版本使用经过后续调整的非像素风 WebP 动画资源，角色为短黑发、校服造型与绿色背包的漫画风形象。
 
-![Peni Parker pet preview](preview.jpg)
+## 运行文件
 
-## Install
+本仓库只有两个运行时必需文件：
 
-1. Download or clone this repository.
-2. Keep `pet.json` and `spritesheet.webp` together in the same `peni-parker` folder.
-3. Copy the `peni-parker` folder into your Codex pets directory:
+| 文件 | 作用 |
+| --- | --- |
+| `pet.json` | 定义桌宠 ID、显示名称、描述、资源版本和图像路径。 |
+| `spritesheet.webp` | Codex 实际加载的动画资源。`pet.json` 中的 `spritesheetPath` 明确指向此文件。 |
+
+请始终将两者放在同一个目录中。运行时不会读取仓库外的预览图、生成脚本或制作过程文件。
+
+## 安装
+
+1. 下载或克隆本仓库。
+2. 将整个 `peni-parker` 文件夹复制到 Codex 的桌宠目录：
 
    ```text
    ~/.codex/pets/peni-parker
    ```
 
-   On Windows, the usual location is:
+   Windows 常见路径为：
 
    ```text
-   C:\\Users\\<your-user>\\.codex\\pets\\peni-parker
+   C:\\Users\\<你的用户名>\\.codex\\pets\\peni-parker
    ```
 
-4. Restart Codex or refresh the pets list. The pet will appear as **Peni Parker**.
+3. 重启 Codex，或刷新桌宠列表。桌宠会以 **Peni Parker** 显示。
 
-## Package Contents
+## 当前动画资源
 
-| File | Purpose |
-| --- | --- |
-| `pet.json` | Pet identity, display name, description, atlas version, and sprite path. |
-| `spritesheet.webp` | The transparent animated sprite atlas used by Codex. |
-| `preview.jpg` | A static image for repository previews. It is not required at runtime. |
+`spritesheet.webp` 是当前版本唯一应使用的资源。它采用 Codex Pets v2 格式，图像尺寸为 `1536 x 2288` 像素，并以 `8 x 11` 的帧槽位布局组织；每个槽位为 `192 x 208` 像素。清单中的 `spriteVersionNumber` 为 `2`。
 
-## Sprite Atlas
+这份 WebP 资源是后续修改后的版本，与早期的像素风预览素材不同。仓库不再保留那张旧预览图，以免将错误的角色风格或帧布局当作当前桌宠内容。
 
-The package uses the v2 pet format (`spriteVersionNumber: 2`). The atlas is a transparent WebP image with these fixed dimensions:
+## 修改注意事项
 
-| Property | Value |
-| --- | --- |
-| Atlas size | 1536 x 2288 px |
-| Grid | 8 columns x 11 rows |
-| Frame size | 192 x 208 px |
-| Animation frames | 88 |
+- 不要单独移动或重命名 `spritesheet.webp`，除非同步更新 `pet.json` 中的 `spritesheetPath`。
+- 不要改变资源的 `1536 x 2288` 尺寸、`8 x 11` 帧槽位布局或 `192 x 208` 单帧尺寸，否则 Codex 无法按 v2 桌宠规则正确播放。
+- 修改桌宠显示名称、说明或 ID 时，请编辑 `pet.json`；修改视觉与动画时，请替换完整的 `spritesheet.webp`，不要混用旧像素风素材。
 
-Rows 0 through 8 provide the standard Codex animation states:
+## 兼容性
 
-| Row | State | Purpose |
-| --- | --- | --- |
-| 0 | `idle` | Calm presence while no task is active. |
-| 1 | `running-right` | Directional movement toward screen-right. |
-| 2 | `running-left` | Directional movement toward screen-left. |
-| 3 | `waving` | Greeting gesture. |
-| 4 | `jumping` | Vertical reaction. |
-| 5 | `failed` | Error or unsuccessful-task reaction. |
-| 6 | `waiting` | Waiting for input or approval. |
-| 7 | `running` | Focused working or processing state. |
-| 8 | `review` | Focused review state. |
+该包面向支持 `spriteVersionNumber: 2` 和 WebP 动画资源的 ChatGPT/Codex Pets 环境。
 
-Rows 9 and 10 contain 16 look-direction poses in clockwise order. Together they cover every 22.5-degree step: up, up-right, right, down-right, down, down-left, left, and up-left, including the intermediate angles.
+## 说明
 
-## Customization Notes
-
-The pet ID is `peni-parker`, and the display name is defined in `pet.json`. If you rename the directory, keep `pet.json` and `spritesheet.webp` together and do not change the atlas dimensions or grid layout. Changing the image without preserving the 8 x 11 grid and 192 x 208 frame size will prevent correct animation playback.
-
-## Compatibility
-
-This package targets the Codex Pets v2 sprite format. It requires a Codex/ChatGPT environment that supports `spriteVersionNumber: 2` and WebP spritesheets.
-
-## Attribution
-
-This is an unofficial fan-made pet package and is not affiliated with, endorsed by, or sponsored by Marvel, Sony, or the owners of the Peni Parker character. Peni Parker and related character names are the property of their respective owners.
+这是非官方同人桌宠，与 Marvel、Sony 及 Peni Parker 角色权利方不存在隶属、赞助或授权关系。相关角色名称归其各自权利方所有。
