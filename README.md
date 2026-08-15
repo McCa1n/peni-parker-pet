@@ -1,6 +1,6 @@
 # Peni Parker 桌宠
 
-这是一个供 ChatGPT/Codex Pets 使用的自定义 Peni Parker 桌宠包。当前版本使用经过后续调整的非像素风 WebP 动画资源，角色为短黑发、校服造型与绿色背包的漫画风形象。
+这是一个供 ChatGPT/Codex Pets 使用的自定义 Peni Parker 桌宠包。当前形象为潘妮帕克。
 
 ## 运行文件
 
